@@ -289,31 +289,34 @@ $(OUTPUT_FILE): copy-redist
         self.copyRedistFiles(os.path.join(self.outDir, 'Redist'))
         
         # Samples
-        samplesDir = os.path.join(self.outDir, 'Samples')
-        self.copyRedistFiles(os.path.join(samplesDir, 'Bin'))
-        self.copyGLUT(os.path.join(samplesDir, 'Bin'))
-        self.copySample(samplesDir, 'SimpleRead')
-        self.copySample(samplesDir, 'SimpleViewer', isGL = True)
-        self.copySample(samplesDir, 'SimpleViewer.java', isJava = True)
-        self.copySample(samplesDir, 'EventBasedRead')
-        self.copySample(samplesDir, 'MultiDepthViewer', isGL = True)
-        self.copySample(samplesDir, 'MultipleStreamRead')
-        self.copySample(samplesDir, 'MWClosestPoint', isLibrary = True)
-        self.copySample(samplesDir, 'MWClosestPointApp')
-        self.copySample(samplesDir, 'ClosestPointViewer', isGL = True)
-        
-        # Tools
-        toolsDir = os.path.join(self.outDir, 'Tools')
-        self.copyRedistFiles(toolsDir)
-        self.copyGLUT(toolsDir)
-        self.copyTool(toolsDir, 'NiViewer', isGL = True)
-        self.copyTool(toolsDir, 'PS1080Console')
-        self.copyTool(toolsDir, 'PSLinkConsole')
-        
-        # Documentation
-        docDir = os.path.join(self.outDir, 'Documentation')
-        self.copyDocumentation(docDir)
-        
+        try:
+            samplesDir = os.path.join(self.outDir, 'Samples')
+            self.copyRedistFiles(os.path.join(samplesDir, 'Bin'))
+            self.copyGLUT(os.path.join(samplesDir, 'Bin'))
+            self.copySample(samplesDir, 'SimpleRead')
+            self.copySample(samplesDir, 'SimpleViewer', isGL = True)
+            self.copySample(samplesDir, 'SimpleViewer.java', isJava = True)
+            self.copySample(samplesDir, 'EventBasedRead')
+            self.copySample(samplesDir, 'MultiDepthViewer', isGL = True)
+            self.copySample(samplesDir, 'MultipleStreamRead')
+            self.copySample(samplesDir, 'MWClosestPoint', isLibrary = True)
+            self.copySample(samplesDir, 'MWClosestPointApp')
+            self.copySample(samplesDir, 'ClosestPointViewer', isGL = True)
+
+            # Tools
+            toolsDir = os.path.join(self.outDir, 'Tools')
+            self.copyRedistFiles(toolsDir)
+            self.copyGLUT(toolsDir)
+            self.copyTool(toolsDir, 'NiViewer', isGL = True)
+            self.copyTool(toolsDir, 'PS1080Console')
+            self.copyTool(toolsDir, 'PSLinkConsole')
+
+            # Documentation
+            docDir = os.path.join(self.outDir, 'Documentation')
+            self.copyDocumentation(docDir)
+        except Exception,e:
+            print "Could not copy Examples or Tools or Docs ---> %s" %e
+
         # Include
         shutil.copytree(os.path.join(rootDir, 'Include'), os.path.join(self.outDir, 'Include'))
         
