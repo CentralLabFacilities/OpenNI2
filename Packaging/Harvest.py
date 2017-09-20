@@ -315,7 +315,7 @@ $(OUTPUT_FILE): copy-redist
             docDir = os.path.join(self.outDir, 'Documentation')
             self.copyDocumentation(docDir)
         except Exception,e:
-            print "Could not copy Examples or Tools or Docs ---> %s" %e
+            print "Could not copy Examples or Tools or Docs ---> %s" % e
 
         # Include
         shutil.copytree(os.path.join(rootDir, 'Include'), os.path.join(self.outDir, 'Include'))
