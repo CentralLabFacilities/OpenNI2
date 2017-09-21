@@ -167,7 +167,7 @@ elif platform.system() == 'Linux' or platform.system() == 'Darwin':
     devNull.close()
     
     buildLog = open(origDir + '/build.release.' + plat + '.log', 'w')
-    subprocess.check_call(['make', '-C', '../', '-j' + calc_jobs_number(), 'PLATFORM=' + plat, 'release'], stdout=buildLog, stderr=buildLog)
+    subprocess.check_call(['make', '-C', '../', '-j' + calc_jobs_number(), 'PLATFORM=' + plat, 'release-no-doc'], stdout=buildLog, stderr=buildLog)
     buildLog.close()
     
     # everything OK, can remove build log
