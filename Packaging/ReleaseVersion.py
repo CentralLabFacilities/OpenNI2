@@ -33,20 +33,25 @@ import stat
 import UpdateVersion
 
 if len(sys.argv) < 2 or sys.argv[1] in ('-h','--help'):
-    print "usage: " + sys.argv[0] + " <x86|x64|Arm|android> [UpdateVersion]"
+    print "usage: " + sys.argv[0] + " <x86|x64|Arm|android> [prefix] [UpdateVersion]"
     sys.exit(1)
     
 plat = sys.argv[1]
 origDir = os.getcwd()
 
+prefix = '/usr'
+if len(sys.argv) >= 3 and sys.argv[2] is not None:
+    prefix = sys.argv[2].strip()
+
 shouldUpdate = 0
-if len(sys.argv) >= 3 and sys.argv[2] == 'UpdateVersion':
+if len(sys.argv) >= 4 and sys.argv[3] == 'UpdateVersion':
     shouldUpdate = 1
 
 if shouldUpdate == 1:
     # Increase Build
     UpdateVersion.VERSION_BUILD += 1
     UpdateVersion.update()
+
 
 def get_reg_values(reg_key, value_list):
     # open the reg key
@@ -168,7 +173,7 @@ elif platform.system() == 'Linux' or platform.system() == 'Darwin':
     devNull.close()
     
     buildLog = open(origDir + '/build.release.' + plat + '.log', 'w')
-    subprocess.check_call(['make', 'GLUT_SUPPORTED=0', 'GLES_SUPPORTED=0', '-C', '../', '-j' + calc_jobs_number(), 'PLATFORM=' + plat, 'release-no-doc'], stdout=buildLog, stderr=buildLog)
+    subprocess.check_call(['make', 'GLUT_SUPPORTED=0', 'GLES_SUPPORTED=0', '-C', '../', '-j' + calc_jobs_number(), 'PREFIX=' + prefix, 'PLATFORM=' + plat, 'release-no-doc'], stdout=buildLog, stderr=buildLog)
     buildLog.close()
     
     # everything OK, can remove build log

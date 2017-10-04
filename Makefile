@@ -154,11 +154,11 @@ doc:
 	rm -f Source/Documentation/html/*.md5
 	
 release: | all doc $(FINAL_DIR)
-	Packaging/Harvest.py Packaging/$(PRODUCT_STRING) $(PLATFORM)
+	Packaging/Harvest.py Packaging/$(PRODUCT_STRING) $(PLATFORM) $(PREFIX)
 	cd Packaging; tar -cjf Final/$(PRODUCT_STRING).tar.bz2 $(PRODUCT_STRING)
 
 release-no-doc: | all $(FINAL_DIR)
-	Packaging/Harvest.py Packaging/$(PRODUCT_STRING) $(PLATFORM)
+	Packaging/Harvest.py Packaging/$(PRODUCT_STRING) $(PLATFORM) $(PREFIX)
 	cd Packaging; tar -cjf Final/$(PRODUCT_STRING).tar.bz2 $(PRODUCT_STRING)
 
 # clean is cleaning all projects
