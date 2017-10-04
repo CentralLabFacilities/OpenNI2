@@ -352,7 +352,7 @@ $(OUTPUT_FILE): copy-redist
             # Configure pc file
             pc_file_path = os.path.join(self.rootDir, 'Packaging', 'Linux', 'libopenni.pc')
             # We need a string literal in order to deal with paths in SED
-            to_replace = 's/usr/' + '\'' + self.prefix + '\'' + '/'
+            to_replace = 's#usr#' + self.prefix + '#g'
             subprocess.check_call(['sed', '-i', to_replace, pc_file_path])
 
             # install script
