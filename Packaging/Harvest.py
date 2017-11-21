@@ -350,14 +350,14 @@ $(OUTPUT_FILE): copy-redist
             shutil.copy(os.path.join(self.binDir, 'OpenNI2.lib'), libDir)
         else:
             # Configure pc file
-            pc_file_path = os.path.join(self.rootDir, 'Packaging', 'Linux', 'libopenni.pc')
+            pc_file_path = os.path.join(self.rootDir, 'Packaging', 'Linux', 'libopenni2.pc')
             # We need a string literal in order to deal with paths in SED
             to_replace = 's#/usr#' + self.prefix + '#g'
             subprocess.check_call(['sed', '-i', to_replace, pc_file_path])
 
             # install script
             shutil.copy(os.path.join(self.rootDir, 'Packaging', 'Linux', 'install.sh'), self.outDir)
-            shutil.copy(os.path.join(self.rootDir, 'Packaging', 'Linux', 'libopenni.pc'), self.outDir)
+            shutil.copy(os.path.join(self.rootDir, 'Packaging', 'Linux', 'libopenni2.pc'), self.outDir)
             shutil.copy(os.path.join(self.rootDir, 'Packaging', 'Linux', 'primesense-usb.rules'), self.outDir)
 
 
