@@ -1,7 +1,7 @@
 prefix=/usr
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
-includedir=${prefix}/include/ni
+includedir=${prefix}/include/openni2/
 
 Name: OpenNI2
 Description: A general purpose driver for all OpenNI cameras.
