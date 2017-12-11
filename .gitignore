@@ -21,3 +21,5 @@ Redist/compile.log
 Redist/OpenNI-*
 Source/Documentation/html
 .idea
+.idea/*
+*idea
